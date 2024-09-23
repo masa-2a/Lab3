@@ -21,16 +21,16 @@ public class InLabByHandTranslator implements Translator {
      * @param country the country
      * @return list of language abbreviations which are available for this country
      */
+
+    public static final String CANADA = "can";
+
     @Override
     public List<String> getCountryLanguages(String country) {
-        // TODO Checkstyle: The String "can" appears 4 times in the file.
-        if ("can".equals(country)) {
+        if (CANADA.equals(country)) {
             return new ArrayList<>(List.of("de", "en", "zh"));
         }
         return new ArrayList<>();
     }
-
-    public static final String CANADA = "can";
 
     /**
      * Returns the country abbreviations for all countries whose translations are
@@ -40,7 +40,7 @@ public class InLabByHandTranslator implements Translator {
      */
     @Override
     public List<String> getCountries() {
-        return new ArrayList<>(List.of("can"));
+        return new ArrayList<>(List.of(CANADA));
     }
 
     /**
@@ -52,22 +52,26 @@ public class InLabByHandTranslator implements Translator {
      */
     @Override
     public String translate(String country, String language) {
-        // TODO Checkstyle: Return count is 5 (max allowed for non-void methods/ lambdas is 2).
 
-        if (!"can".equals(country)) {
+        if (!country.equals(CANADA)) {
             return null;
         }
-        if ("de".equals(language)) {
-            return "Kanada";
-        }
-        else if ("en".equals(language)) {
-            return "Canada";
-        }
-        else if ("zh".equals(language)) {
-            return "加拿大";
-        }
-        else {
-            return null;
-        }
+
+        String translation;
+        switch (language) {
+            case "de":
+                translation = "Kanada";
+                break;
+            case "en":
+                translation = "Canada";
+                break;
+            case "zh":
+                translation = "加拿大";
+                break;
+            default:
+                translation = null;
+                break;
+
+        return translation;
     }
 }
