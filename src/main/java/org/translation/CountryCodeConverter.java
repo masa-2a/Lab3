@@ -63,8 +63,11 @@ public class CountryCodeConverter {
      */
     public String fromCountry(String country) {
         // TODO Task: update this code to use an instance variable to return the correct value
-        for (Map.Entry<String, String> entry : codestocountry.entrySet()) {}
-        return codestocountry.
+        for (Map.Entry<String, String> entry : codestocountry.entrySet()) {
+            if (entry.getValue().equals(country)) {
+                return entry.getKey();
+            }
+        }
     }
 
     /**
