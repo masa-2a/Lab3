@@ -13,7 +13,7 @@ import java.util.Map;
  */
 public class CountryCodeConverter {
 
-    private Map<String, String> codes = new HashMap<String, String>();
+    private Map<String, String> codestocountry = new HashMap<String, String>();
 
     /**
      * Default constructor which will load the country codes from "country-codes.txt"
@@ -34,7 +34,10 @@ public class CountryCodeConverter {
             List<String> lines = Files.readAllLines(Paths.get(getClass()
                     .getClassLoader().getResource(filename).toURI()));
 
-            // TODO Task: use lines to populate the instance variable(s)
+            for (String line : lines) {
+                String[] parts = line.split("\t");
+                codestocountry.put(parts[2], parts[0]);
+            }
 
         }
         catch (IOException | URISyntaxException ex) {
@@ -50,7 +53,7 @@ public class CountryCodeConverter {
      */
     public String fromCountryCode(String code) {
         // TODO Task: update this code to use an instance variable to return the correct value
-        return code;
+        return codestocountry.get(code);
     }
 
     /**
@@ -60,7 +63,8 @@ public class CountryCodeConverter {
      */
     public String fromCountry(String country) {
         // TODO Task: update this code to use an instance variable to return the correct value
-        return country;
+        for (Map.Entry<String, String> entry : codestocountry.entrySet()) {}
+        return codestocountry.
     }
 
     /**
